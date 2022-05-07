@@ -1,0 +1,180 @@
+\documentclass[11pt,twocolumn]{article} 
+
+% required packages for Oxy Comps style
+\usepackage{oxycomps} % the main oxycomps style file
+\usepackage{times} % use Times as the default font
+\usepackage[style=numeric,sorting=nyt]{biblatex} % format the bibliography nicely
+
+\usepackage{amsfonts} % provides many math symbols/fonts
+\usepackage{listings} % provides the lstlisting environment
+\usepackage{amssymb} % provides many math symbols/fonts
+\usepackage{graphicx} % allows insertion of grpahics
+\usepackage{hyperref} % creates links within the page and to URLs
+\usepackage{url} % formats URLs properly
+\usepackage{verbatim} % provides the comment environment
+\usepackage{xpatch} % used to patch \textcite
+
+\bibliography{references}
+\DeclareNameAlias{default}{last-first}
+
+\xpatchbibmacro{textcite}
+  {\printnames{labelname}}
+  {\printnames{labelname} (\printfield{year})}
+  {}
+  {}
+
+\pdfinfo{
+    /Title (Experiencing Mexican Culture through cuisine in VR)
+    /Author (Stephanie Enriquez Isais)
+}
+
+\title{Experiencing Mexican Culture through cuisine in VR}
+
+\author{Stephanie Enriquez Isais}
+\affiliation{Occidental College}
+\email{senriquezisa@oxy.edu}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+For my senior comprehensive project, I will be creating a farm-to-table VR experience that helps people learn more about Mexican culture. I want to be able to expand people's knowledge of Mexican culture through the evolution of its cuisine. The following is my senior comprehensive proposal about how I will execute this project.
+
+\section{Problem Context}
+There are 69 official languages in Mexico and each of its 32 states has its own distinct traditions, style, and cuisine. From an outsider’s perspective, Mexican culture is often just associated with sombreros, tacos, burritos, and tequila. While these do make up a part of Mexican culture, they are nowhere near representative of all Mexico has to offer. Mexican cuisine is extremely diverse and has a lot of historical significance. There are drinks, like tepache (fermented pineapple juice), that have pre-colonial roots and are still widely enjoyed by people in Mexico. However, unless you live in Mexico or have some Mexican heritage you probably won’t ever encounter these parts of Mexican culture. In addition to that, the way Mexican food was prepared in the past is not commonly used in the average Mexican household anymore. Tools like the metate (mealing stone) were used by Mexican people in the past to grind their corn or other ingredients into a fine powder. The word metate comes from the Nauhuatl word metlatl which means grinding stone. The indigenous Mexican people of the past used metates to grind the maize (corn) down and be able to make tortillas. These tools and techniques have historical value to Mexican culture because they influenced the style of food made and should not be forgotten . Even when talking to my Mexican American friends, most of them don’t know what a metate is, but their grandparents or even parents probably know what it is and how it is used. Although most Mexican households have replaced the metate with a food processor or a molcajete (pestle and mortar) there are a couple of people who still use them. My dad tells me about the metate my grandmother was given when she got married and the pride she took in how much use she got out of it and the unique taste it gave her food. This is the historical context that I want to teach people about. It is a bit unfortunate that VR can only provide a visual and audio experience because what often distinguishes these traditional tools from current ones is the special flavor they add to the food. Although VR does not provide a way to showcase the unique taste and labor that goes into using these Mexican tools, I still think it’s a great way of getting people interested in their historical importance and have the next best thing to actually using the tools and making the food. These traditions have shaped Mexican culture and offer Mexicans a way of staying connected to our indigenous roots. 
+ 
+ 
+
+\section{Technical Background}
+\subsection{Heads Up Display}
+My project will be made using Unity and scripting in C\#. Although my project is not a game, it does require the usage of game design elements. One of them is the heads-up display (HUD). This UI element allows the user to easily see where they stand in the game, whether this means their literal position or their health/remaining track. For my project, the HUD will be used to help the user know which step of the recipe they are on. In the more traditional console, PC, or mobile games the HUD is a constant interface that can be seen on the outer edges of the screen, in VR this is usually not the case. There are various reasons for this some of them go back to preventing motion sickness. However, another reason for this is that the HUDs implemented in VR can be more naturally incorporated into gameplay than on screen-based games. For example, in a VR game, the player's health status will usually not be shown constantly on the screen but by doing something more normal like checking your watch on your virtual wrist. This is something that is done in games like Star Wars: Tales of the Galaxy’s Edge\cite{talesOfGlax2020} and Green Hell\cite{greenHell2019}, both of which are first-person adventure games and try their best at making the user feel as if they were in that world. Therefore, when it comes to my project, I will follow a similar guideline of implementing HUD information in more natural places that help create a better sense of immersion.
+
+ 
+
+\subsection{Curve Screen}
+Continuing with the focus on UI elements, although my project will be more interaction-based and the user will not have to do much reading, there is still a use for screens of information. Especially for the game menus and game loading screens. This is why I will be implementing curved UI screens. Curved UI screens are used in VR because VR headsets often have a limited field of view and the benefit of curved screens is that they give the user a more expansive Field of View (FoV)\cite{curvedScreen2020}. Although curved screens are often not preferred in real life because only the person in the middle gets the benefit of the wider FoV, this is not a problem in VR since it all focuses on one user. Therefore, for my project, I will be incorporating curved screens that allow the user to have a better field of view. This can be made in a 3D modeling tool (like Blender), however, making it in Unity will give me the benefit of being able to tweak the size and curve of the screen. This is done by first creating a curved mesh that establishes the positioning of the curved UI screen and then creating a MeshGenerator that would take all the desired parameters from the curved mesh and generates and populates the mesh to create a curved screen \cite{curvedScreen2020}.
+
+ 
+\subsection{Hand Tracking}
+Another important aspect of my comps project will be the hand tracking used for interacting with the VR world. Since I will be using a Meta Quest VR headset, it comes with hand tracking ability. The hand tracking is done with the 4 cameras the headset provides. They use computer vision to track and identify gestures by first locating the hands and then the configurations of your fingers\cite{handTracking}. Recently Meta came out with a new update that uses deep learning to better understand the hand gestures you are doing even when one hand occludes the other. This solves the previous problem of the system taking breaks when one hand was covered. Although hand tracking can provide a more natural interaction, there are still some downsides. The Meta Quest can track hands but with limitations on the hand gestures, it can recognize. Currently, the Quest does this by having a set of gestures that it recognizes like pinching or poking for selecting objects and moving them, however, it doesn’t recognize you just opening up your hand and grabbing an object \cite{handTracking}. At the same time, Meta is continuously updating their hand-tracking capabilities and some independent programmers have figured out how to get hand tracking to work more naturally, like being able to pick things up by making a grab and hold motion over the item\cite{handPosing2020}.  
+
+
+
+
+
+\section{Prior Work}
+\subsection{Cooking Games}
+When doing research into the prior work done to address this problem, I found a couple of VR apps that are related to my VR project idea. The first one is called Lost Recipes, this VR game teaches users to cook by showing an array of traditional dishes from ancient cultures like the Mayan, Greek, and Chinese \cite{lostrecipes2022}. The game guides the players through tasks like measuring and mixing ingredients in an effort to recreate a traditional recipe. While this game does a good job of encouraging the users to complete the tasks and even try the recipes out on their own (this is based on some reviews left on the game), it doesn’t give much historical information about the significance of the food or tools they are using. Since this is the game that is most similar to my idea, it has helped me identify the areas that I would like to improve on. At the same time, playing the game has taught me about the manner in which affordances can be used to have the user complete the game in the intended manner and gain the most out of it. Another similar cooking game is Cooking Simulator \cite{cookingsim2019}. As the name suggests this game is a lot more focused on creating a realistic experience of what it is like to cook in VR. The user has to measure each ingredient, can cut the produce, and can even cook or bake in the game. This game is probably one of the most realistic cooking simulators and gives good examples of how to program the tools in the kitchen so the user can use them with controllers. When looking at references for how to build my cooking mechanics I think this game will be a great example to look back upon. 
+
+\subsection{Storytelling Games}
+In addition to the cooking aspect of my project, I want to really take advantage of the immersiveness of VR and create a VR experience that can tell a story in a more engaging way. The first example is the VR game “Vader Immortal” \cite{vadarimmortal2019ep1}. The game revolves around the player trying to stop Darth Vader from destroying the planet Mustafar. When presenting the player with the history of the planet and why they should fight for it, they do it through the use of 3D animations. The majority of the game is the user traveling, fighting, and exploring the world but when presenting what is at stake, the creators decided to use storytelling through animation, and after playing the game, it is clear why they made this choice. Seeing the story quite literally unravel around you makes it more engaging and immersive. It inspires me to create a similar sentiment when describing the history of Mexican cuisine. The Vader immortal approach to storytelling is similar to the cutscenes that are often used in video games but another technique for storytelling that would be interesting is the one used in the VR game “What Remains of Edith Finch” \cite{finch2019}. This game details the stories about what happened to the Finch family and one scene does this very interestingly by incorporating the mundane chore of cutting fish heads in an assembly line with the character’s daydreams slowly taking up more and more of the screen space. I think incorporating something similar to this in which the user is using one of the labor-intensive cooking tools and then they see a scene of the history of the ingredients they are using would be an interesting way of engaging the user with the content I am trying to teach them about. 
+
+\section{Ethical Considerations}
+While this game may be made with the best intentions in mind, it still has some ethical considerations to take into consideration. 
+\subsection{Issues with VR}
+One of the first ethical issues with this project is the medium in which it is played. As I mentioned in the technical background, motion sickness is a big concern for VR. In fact, 40\% to 70\% of VR users have experienced motion sickness after about 15 minutes of usage \cite{motionsicknessvr2019}. Even if I take all the necessary precautions to cause the least motion sickness there are still some factors out of my hand. Like the fact that women are more likely to get motion sickness in VR than men. An article about the issues of gender disparity in VR motion sickness states a possible reason for this imbalance to be, “gender differences in depth cue perception due to men favoring motion parallax (which is prioritized in VR) and women favoring shape-from-shading“\cite{vrbarriers2018}. As the article also later writes about, this inequity in design can also be due to designers favoring those who are ‘most likely” to buy and use VR equipment\cite{vrbarriers2018}. All of these explanations attribute the motion sickness gender imbalance to the inadequate design of VR headsets, something that as a creator of a VR project, I will not be able to change. It does bring into question why choose VR when half of the population is at a disadvantage. 
+
+Other factors that can exclude people from using VR are accessibility issues. An article by Wired discussed how people with physical or visual disabilities can have a harder time using VR. They mention accessibility consultant Erin Hawley, who has limited hand movement because of muscular dystrophy, could not use the Anne Frank VR experience because it required movements such as opening a door that she could not reach \cite{vraccessibility2022}. Some games, like Arca’s Path, try to address these issues in VR by implementing an option in which the user can control the ball with simple head movements instead of the controllers \cite{arcaspath2018}. While it is important to consider such matters, the reality is I will only have one semester to work on this project, and taking some of the labor-intensive approaches used by other games might not be feasible for my timeline. Therefore my project would not be accessible to everyone.
+
+
+\subsection{Issues with Implicit Bias}
+The most evident ethical concern lies in the implicit bias that can occur in the project creation process. Although I am Mexican and have grown up surrounded by Mexican culture I am in no way an all-knowing person when it comes to what is Mexican and what isn’t. Therefore, when creating the storyline for this project and assessing what should and shouldn’t be included, there is the risk of my implicit bias affecting the impression of what people learn about Mexican culture after using the experience. Implicit bias is an important ethical issue to consider because it is an unconscious way a person can be biased towards something. An article about the subject described how teachers can show bias toward students when it came to making a judgment call on disciplinary actions that have more subjective parameters, such as what it means to be ‘disrespectful’ or ‘disruptive’ \cite{implicitbias201516}. They found that the students of color were more likely to be disciplined because of the teachers’ experience and unconscious associations with race \cite{implicitbias201516}. This is relevant to my project because it shows that people's biases can come out when making decisions on subjective matters even if they are not consciously aware of it. This could be reflected in various aspects of my project. 
+
+One of these aspects could be in the recipes that I choose for the experience. I have grown up and enjoyed the food made by my parents who are from the Mexican states of Zacatecas and Morelos. Therefore, I will be less likely to choose a dish more traditional to the state of Chiapas because I either have not tried it or it is just not part of what I consider to be good food. While these are examples I can point out, the whole idea behind implicit bias is that I won't know when I am being biased towards something. Implicit bias can also be reflected in the translations I do for this project. I found some great resources about Mexican cuisine in Spanish and since I am catering my project to an English-speaking audience, I will have to translate some of the pieces. An article about cultural misrepresentation through translations first brings up the importance of literature in relation to culture. It says, “Literature represents a body of cultural goods that a particular culture sees as its heritage for its own members (self) and as an image for export to members of other cultures (other)” \cite{translationmisrep2008}. Therefore, when making these translations there is the possibility that my implicit bias will affect my translations and therefore the image of Mexican culture will be distorted by my bias. At the end of the day, this project can be unethical in the sense that I will be making the final judgment calls on what will go into the project and therefore my bias will affect the story told to favor my experience as a Mexican person. 
+ 
+
+
+
+\section{Methods}
+Although there is a timeline at the end of the paper, in this section I will give a more in-depth explanation of the approach I will be taking for this project. I will approach this project similarly to if this were a game since a lot of the same concepts still apply. Therefore, I will be using the Unity game engine to create a VR experience playable on the Meta Quest 2. 
+
+
+\subsection{Planning and Research} 
+For the majority of the summer, I will spend my time researching the topics necessary for my project. In the beginning, this will include researching Mexican recipes and their historical significance. This will be what I am first focusing on because depending on the recipes and the story they tell, I will be able to have a better understanding of what type of mechanics and VR creation tools I will need to learn to use. After I have a solid understanding of what recipes I will focus on, I will start researching examples of similar game mechanics or how to build them on my own. The purpose of this will be to help me vet the recipes and make a choice on ones that have meaningful historical significance and are feasible in Unity. Some of the other research I will be doing will include looking for assets (3D models, music, sprites). This will help me get a better gauge of what assets I will need to create on my own. Finally, I will spend the last couple of weeks of summer putting together the story based on my recipe and game mechanics decisions. An alternative way of approaching this stage could be to first look at the assets and mechanics that exist and then base my game on that but I want to prioritize the content.
+ 
+\subsection{Creation Process}
+For the first month after starting the fall semester I will mostly focus on creating the gaming mechanics needed for the cooking. I will use grey boxes as stand-ins for the assets because I want to first focus on making sure I can create the VR mechanics since they will be a central part of the project. In the following month, I will also start to make any of the 3D assets necessary that I cannot find or buy elsewhere. When creating these, I will probably use Blender, a 3D creation software that has become an industry standard for many companies. I will also use Quill, another 3D creation program but this one can be done in VR. I chose this because it makes for very easy content creation and I can immediately get a sense of how it would look in VR. This will be one of the harder aspects to tackle but I think it is important to address them earlier than later. In addition to that, I will be reaching out to professors and people knowledgeable in VR development for help. 
+
+
+\subsection{Iteration and Testing}
+As any designer will tell you, one of the most important aspects of creating something is to test and iterate on it to make it better. Therefore, after creating the mechanics and assets I will make some time to put them together and start testing how it looks and feels. I think I will also conduct some informal user testing with people I know so I can get a better gauge of what is necessary to make good VR interactions. This testing and iteration will continue throughout the rest of the semester but by the end of November, I imagine being able to do the formal user testing and see what people learn from the project. I decided to do more informal user testings throughout the semester because I think it will help make changes easier than one user testing session towards the end. In addition to that, not all of my evaluation criteria will be based on the VR mechanics so I am still leaving content for the formal user testing.
+
+ 
+\subsection{Consolidation of Work}
+Around the end of November, I will also start to take on other parts of the project like making the poster and working on revising the comps paper. Although I will be making edits to the Methods sections as I work on the project all semester, there are parts, like the evaluations and conclusion, that I will only be able to do after I finish the user testing. Overall, I think if I keep good notes on the work I do I will have an easier time putting it all together in a paper, poster, and presentation. 
+
+
+
+
+\section{Evaluations}
+\subsection{Mexican Food and Culture} 
+There are two main aspects of my project I would like to evaluate. The first is if the user gained a new perspective on Mexican food and culture. As mentioned before, the purpose of this project is to challenge stereotypes surrounding Mexican food and showcase it in a new and more accurate light. The way I would evaluate if people learned would be by taking a preliminary questionnaire in which I gauge what their current opinions of Mexican food and culture are. Then I would have them play the experience and again give them the same questionnaire to see if and how much their opinions have changed. When deciding how I would like to evaluate my project, I decided to use questionnaires so that I could have tangible data to draw conclusions from. When doing some research on how to write the questions I found some resources that give some advice on what makes good questions. Some of the takeaways I got from the article were that questions should be reliable so that the user can give the same answer even if asked at different times\cite{designQuestionaire2006} (note: this does not include before and after using the VR experience). They also mention that we should make a conceptual framework of all the dependent and independent variables that can affect the results sot hat we can make sure to cover them in the questionnaire. 
+
+When it comes to the group of participants, since we are not in Mexico I think that anyone will be a good candidate because they will most likely not have a lot of experience with Mexican culture. However, I also think that it will also be useful to conduct these questionnaires on people who do know Mexican culture so that we can see if improved their knowledge as well. Therefore, I imagine that the majority of the participants will be college students with varying degrees of knowledge about Mexican culture.
+ 
+\subsection{VR Experience}
+Another important aspect that I will be evaluating is the users VR experience. To collect information about what people thought, I will again use a questionnaire, however, I will just do one round of questions at the end of the VR experience. There are 3 topics I would like to collect information on. The first one is the users’ experience with motion sickness while using the game. Although there is no magical fix that can assure no one gets motion sickness from using the project, there are still general guidelines I can follow to make sure to keep motion sickness at a minimum. I will also ask questions in regards to the aspects of the VR project that make them sick so I can improve on them.
+
+Since the VR experience will have a mix of controller and hand tracking usage, I would also like to evaluate how the users found the hand tracking in comparison to using a controller. This is because the built-in hand gestures recognized by the Meta Quest 2 are more limited than using a controller but using our hands is more natural to us as humans. It will be interesting to gain some more insight into that. 
+ 
+Overall, the questionnaire will also have questions that cover the general VR experience. Since most of the participants will be college students they will have a clear memory of what it is like to learn in various formats (i.e. lectures, class discussions, videos), and therefore be able to draw from their experience to give a comparison of how VR learning compares to other types of learning. Some of the questions I imagine making will ask the participants to talk about the effect of the VR's immersive and interactive qualities on their engagement and interest during the experience. 
+
+
+ \section{Proposal Timeline}
+ \begin{itemize}
+ 
+   \item May 2022
+   \begin{itemize}
+     \item Wk 1-2:  Do research on different Mexican recipes.
+     \item Wk 3-4: Continue research and solidify a list of choices.
+   \end{itemize}
+   
+   \item June 2022
+   \begin{itemize}
+     \item Wk 1-2: Do research on how to implement cooking skills into VR mechanics.
+     \item Wk 3-4:Continue research on VR (mechanics/assets) and Mexican Culture topics.
+   \end{itemize}
+   
+   \item July 2022
+   \begin{itemize}
+     \item Wk 1-2: Continue research on VR (mechanics/assets) and Mexican Culture topics.
+     \item Wk 3-4:  Continue research and make a decision on appropriate and feasible recipes.
+   \end{itemize}
+   
+   \item August 2022
+   \begin{itemize}
+     \item Wk 1-2: Start drafting storyline. (mechanics/assets) and Mexican Culture topics.
+     \item Wk 3-4: Start planning out what VR mechanics to implement.
+   \end{itemize}
+   
+   \item September 2022
+   \begin{itemize}
+     \item Wk 1-2: Start building VR Mechanics.
+     \item Wk 3-4: Continue building VR Mechanics and do initial user testing.
+   \end{itemize}
+   
+   \item October 2022
+   \begin{itemize}
+     \item Wk 1-2: Buy, make or find 3D and audio assets. 
+     \item Wk 3-4: Implement assets into VR project.
+   \end{itemize}
+   
+   \item November 2022
+   \begin{itemize}
+     \item Wk 1-2:Debug, test, iterate. Start revising comps proposal.
+     \item Wk 3-4: Formal user testing. Start making Poster.
+   \end{itemize}
+   
+   \item December 2022
+   \begin{itemize}
+     \item Wk 1-2: Final project touches. Continue working on Poster. 
+     \item Wk 3-4: Final project touches/Submission.
+   \end{itemize}
+   
+\end{itemize}
+
+
+\printbibliography 
+
+\end{document}
